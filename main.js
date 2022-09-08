@@ -13,7 +13,6 @@ var affirmations = [
 "I honor my body by trusting the signals that it sends me.",
 "I manifest perfect health by making smart choices.",
 ];
-
 var mantras = [
 "Breathing in, I send myself love. Breathing out, I send love to someone else who needs it.",
 "Don’t let yesterday take up too much of today.",
@@ -31,14 +30,11 @@ var mantras = [
 "Onward and upward.",
 "I am the sky, the rest is weather.",
 ];
-
-
 var affirmationButton = document.querySelector('.affirmation');
 var mantraButton = document.querySelector('.mantra');
 var receiveMessageButton = document.querySelector('.receive-message-button');
 var messageSection = document.querySelector('.message-box');
 var bellImage = document.querySelector('svg');
-
 
 receiveMessageButton.addEventListener('click', randomize);
 
