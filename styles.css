@@ -71,14 +71,20 @@ button {
 }
 
 .message-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: #ffffff;
   border-radius: 10px;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 18px;
   margin: auto;
   margin-top: 125px;
   padding: 5px;
   height: 150px;
   width: 850px;
-  display; flex;
-  justify-content: center;
-  align-items: center;
+}
+
+.hidden {
+  display: none;
 }
