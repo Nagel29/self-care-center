@@ -6,3 +6,67 @@ dark-blue - #134d71;
 white - #ffffff;
 black - #000000;
 */
+
+body {
+  background: linear-gradient(#134d71, #78a7c6, #f7e4bf);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+h1 {
+  color: white;
+  font-family: 'Quicksand', sans-serif;
+  margin-top: 35px;
+  margin-bottom: 100px;
+  text-align: center;
+}
+
+h2 {
+  color: white;
+  font-family: 'Quicksand', sans-serif;
+  text-align: center;
+  margin: 10px;
+}
+
+.buttons-box {
+  background: #ffffff;
+  border-radius: 10px;
+  margin: auto;
+  padding: 5px;
+  height: 95px;
+  width: 575px;
+  display: grid;
+}
+
+.radars {
+  font-family: 'Quicksand', sans-serif;
+  font-style: italic;
+  font-size: 18px;
+  display: flex;
+  justify-content: space-around;
+}
+
+input {
+  height: 20px;
+  margin: 10px;
+  width: 20px;
+}
+
+.receive-message {
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+button {
+  background-color: #134d71;
+  border: none;
+  border-radius: 5px;
+  color: #ffffff;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 18px;
+  height: 30px;
+  width: 205px;
+
+}
