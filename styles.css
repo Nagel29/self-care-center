@@ -68,5 +68,17 @@ button {
   font-size: 18px;
   height: 30px;
   width: 205px;
+}
 
+.message-box {
+  background: #ffffff;
+  border-radius: 10px;
+  margin: auto;
+  margin-top: 125px;
+  padding: 5px;
+  height: 150px;
+  width: 850px;
+  display; flex;
+  justify-content: center;
+  align-items: center;
 }
