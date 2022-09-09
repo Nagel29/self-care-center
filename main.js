@@ -52,6 +52,7 @@ function randomize() {
   if (!findType()) {
     alert('Please select a type of message.')
   }
+  //ADD checkForDuplicate function to call in here?
   var randomIndex = Math.floor(Math.random() * findType().length);
   var randomMessage = findType()[randomIndex];
   displayMessage(randomMessage);
