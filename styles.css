@@ -85,6 +85,17 @@ button {
   align-items: center;
 }
 
+form {
+  width: 650px;
+}
+
+.add-message-input {
+  width: 500px;
+  height:30px;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 18px;
+}
+
 .clear-message-button {
   margin: 30px;
 }

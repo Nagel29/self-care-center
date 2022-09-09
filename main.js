@@ -35,41 +35,47 @@ var mantraButton = document.querySelector('.mantra');
 var receiveMessageButton = document.querySelector('.receive-message-button');
 var clearMessageButton = document.querySelector('.clear-message-button');
 var addMessageButton = document.querySelector('.add-message-button')
+var submitButton = document.querySelector('.submit-button');
 var messageSection = document.querySelector('.message');
+var addAffirmationButton = document.querySelector('.affirmation-add');
+var addMantraButton = document.querySelector('.mantra-add');
 var bellImage = document.querySelector('svg');
 var addMessageForm = document.querySelector('#add-message-form');
+var messageInput = document.querySelector('.add-message-input');
 
 
 receiveMessageButton.addEventListener('click', randomize);
 clearMessageButton.addEventListener('click', clearMessage);
 addMessageButton.addEventListener('click', displayInput);
+submitButton.addEventListener('click', submitMessage);
 
-function findType() {
-  if (affirmationButton.checked) {
+function findType(affirmation, mantra) {
+  if (affirmation.checked) {
     return affirmations;
   }
-  if (mantraButton.checked) {
+  if (mantra.checked) {
     return mantras;
   }
 }
 function randomize() {
-  if (!findType()) {
+  if (!findType(affirmationButton, mantraButton)) {
     alert('Please select a type of message.')
   }
-  //ADD checkForDuplicate function to call in here?
-  var randomIndex = Math.floor(Math.random() * findType().length);
-  var randomMessage = findType()[randomIndex];
+  var randomIndex = Math.floor(Math.random() * findType(affirmationButton, mantraButton).length);
+  var randomMessage = findType(affirmationButton, mantraButton)[randomIndex];
   displayMessage(randomMessage);
 }
 function displayMessage(message) {
   bellImage.classList.add('hidden');
   addMessageForm.classList.add('hidden');
   messageSection.innerText = message;
+  clearMessageButton.classList.remove('hidden');
 }
 function clearMessage() {
   if (bellImage.classList.contains('hidden')) {
     addMessageForm.classList.add('hidden');
     messageSection.innerText = "";
+    clearMessageButton.classList.add('hidden');
     bellImage.classList.remove('hidden');
   } else {
     alert('No message to clear!')
@@ -77,7 +83,26 @@ function clearMessage() {
 }
 function displayInput() {
   bellImage.classList.add('hidden');
+  messageInput.value = "";
   messageSection.innerText = "";
   addMessageForm.classList.remove('hidden');
-
+  clearMessageButton.classList.add('hidden');
+}
+function submitMessage() {
+  event.preventDefault();
+  if (!findType(addAffirmationButton, addMantraButton)) {
+    return alert('Please select a type of message.');
+  }
+  if (!messageInput.value) {
+    return alert('Cannot submit blank message');
+  }
+  for (var i = 0; i < findType(addAffirmationButton, addMantraButton).length; i++) {
+    if (findType(addAffirmationButton, addMantraButton)[i] === messageInput.value) {
+      return alert(`This message already exists!`);
+    }
+  }
+  findType(addAffirmationButton, addMantraButton).push(messageInput.value);
+  addMessageForm.classList.add('hidden');
+  messageSection.innerText = messageInput.value;
+  clearMessageButton.classList.remove('hidden');
 }
