@@ -11,6 +11,7 @@ body {
   background: linear-gradient(#134d71, #78a7c6, #f7e4bf);
   background-attachment: fixed;
   background-repeat: no-repeat;
+  text-align: center;
 }
 
 h1 {
@@ -18,14 +19,12 @@ h1 {
   font-family: 'Quicksand', sans-serif;
   margin-bottom: 100px;
   margin-top: 35px;
-  text-align: center;
 }
 
 h2 {
   color: white;
   font-family: 'Quicksand', sans-serif;
   margin: 10px;
-  text-align: center;
 }
 
 .buttons-box {
@@ -83,6 +82,14 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.clear-message-button {
+  margin: 50px;
+}
+
+.image {
+  display: inline;
 }
 
 .hidden {
