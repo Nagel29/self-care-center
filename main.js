@@ -34,11 +34,15 @@ var affirmationButton = document.querySelector('.affirmation');
 var mantraButton = document.querySelector('.mantra');
 var receiveMessageButton = document.querySelector('.receive-message-button');
 var clearMessageButton = document.querySelector('.clear-message-button');
+var addMessageButton = document.querySelector('.add-message-button')
 var messageSection = document.querySelector('.message');
 var bellImage = document.querySelector('svg');
+var addMessageForm = document.querySelector('#add-message-form');
+
 
 receiveMessageButton.addEventListener('click', randomize);
 clearMessageButton.addEventListener('click', clearMessage);
+addMessageButton.addEventListener('click', displayInput);
 
 function findType() {
   if (affirmationButton.checked) {
@@ -58,14 +62,22 @@ function randomize() {
   displayMessage(randomMessage);
 }
 function displayMessage(message) {
-  bellImage.classList.add('hidden')
+  bellImage.classList.add('hidden');
+  addMessageForm.classList.add('hidden');
   messageSection.innerText = message;
 }
 function clearMessage() {
   if (bellImage.classList.contains('hidden')) {
+    addMessageForm.classList.add('hidden');
     messageSection.innerText = "";
     bellImage.classList.remove('hidden');
   } else {
     alert('No message to clear!')
   }
+}
+function displayInput() {
+  bellImage.classList.add('hidden');
+  messageSection.innerText = "";
+  addMessageForm.classList.remove('hidden');
+
 }
