@@ -18,7 +18,7 @@ The problem that this app is solving is the need for users to receive positive m
 
 ### Preview of App:
 [//]: <> (Provide ONE gif or screenshot of your application - choose the "coolest" piece of functionality to show off.)
-![](https://www.loom.com/embed/5d39eaad35ec4da19f1e3b30cec74cbf)
+![](https://im5.ezgif.com/tmp/ezgif-5-c8e64dc2c8.gif)
 
 ### Context:
 [//]: <> (Give some context for the project here. How long did you have to work on it? How far into the Turing program are you?)
