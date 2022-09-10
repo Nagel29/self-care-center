@@ -34,20 +34,22 @@ var affirmationButton = document.querySelector('.affirmation');
 var mantraButton = document.querySelector('.mantra');
 var receiveMessageButton = document.querySelector('.receive-message-button');
 var clearMessageButton = document.querySelector('.clear-message-button');
+var deleteMessageButton = document.querySelector('.delete-message-button')
 var addMessageButton = document.querySelector('.add-message-button')
 var submitButton = document.querySelector('.submit-button');
-var messageSection = document.querySelector('.message');
+var messageOutput = document.querySelector('.message');
 var addAffirmationButton = document.querySelector('.affirmation-add');
 var addMantraButton = document.querySelector('.mantra-add');
 var bellImage = document.querySelector('svg');
 var addMessageForm = document.querySelector('#add-message-form');
 var messageInput = document.querySelector('.add-message-input');
-
+var deletedMessageOutput = document.querySelector('.message-delete');
 
 receiveMessageButton.addEventListener('click', randomize);
 clearMessageButton.addEventListener('click', clearMessage);
-addMessageButton.addEventListener('click', displayInput);
+addMessageButton.addEventListener('click', displayInputForm);
 submitButton.addEventListener('click', submitMessage);
+deleteMessageButton.addEventListener('click', deleteMessage);
 
 function findType(affirmation, mantra) {
   if (affirmation.checked) {
@@ -67,26 +69,45 @@ function randomize() {
 }
 function displayMessage(message) {
   bellImage.classList.add('hidden');
+  deletedMessageOutput.classList.add('hidden');
   addMessageForm.classList.add('hidden');
-  messageSection.innerText = message;
+  messageOutput.innerText = message;
   clearMessageButton.classList.remove('hidden');
+  deleteMessageButton.classList.remove('hidden');
+
 }
 function clearMessage() {
-  if (bellImage.classList.contains('hidden')) {
+  addMessageForm.classList.add('hidden');
+  messageOutput.innerText = "";
+  clearMessageButton.classList.add('hidden');
+  deleteMessageButton.classList.add('hidden');
+  bellImage.classList.remove('hidden');
+}
+function deleteMessage() {
+  if (confirm('Are you sure you want to delete this message? It will no longer be available.')) {
+    for (var i = 0; i < findType(affirmationButton, mantraButton).length; i++) {
+      if (findType(affirmationButton, mantraButton)[i] === messageOutput.innerText) {
+        var deletedMessage = findType(affirmationButton, mantraButton)[i];
+        findType(affirmationButton, mantraButton).splice(i, 1);
+      }
+    }
+    deletedMessageOutput.innerText = `"${deletedMessage}" has been deleted!`;
     addMessageForm.classList.add('hidden');
-    messageSection.innerText = "";
+    messageOutput.innerText = "";
     clearMessageButton.classList.add('hidden');
+    deleteMessageButton.classList.add('hidden');
+    deletedMessageOutput.classList.remove('hidden');
     bellImage.classList.remove('hidden');
-  } else {
-    alert('No message to clear!')
   }
 }
-function displayInput() {
+function displayInputForm() {
   bellImage.classList.add('hidden');
+  deletedMessageOutput.classList.add('hidden');
   messageInput.value = "";
-  messageSection.innerText = "";
+  messageOutput.innerText = "";
   addMessageForm.classList.remove('hidden');
   clearMessageButton.classList.add('hidden');
+  deleteMessageButton.classList.add('hidden');
 }
 function submitMessage() {
   event.preventDefault();
@@ -103,6 +124,7 @@ function submitMessage() {
   }
   findType(addAffirmationButton, addMantraButton).push(messageInput.value);
   addMessageForm.classList.add('hidden');
-  messageSection.innerText = messageInput.value;
+  messageOutput.innerText = messageInput.value;
   clearMessageButton.classList.remove('hidden');
+  deleteMessageButton.classList.remove('hidden');
 }

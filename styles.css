@@ -100,8 +100,12 @@ form {
   margin: 30px;
 }
 
-.image {
-  display: inline;
+.message-delete {
+  margin: 15px;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 16px;
+  color: #CB4335;
+  font-weight: bold;
 }
 
 .hidden {
