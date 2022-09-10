@@ -30,6 +30,7 @@ var mantras = [
 "Onward and upward.",
 "I am the sky, the rest is weather.",
 ];
+var messageTypes = [affirmations, mantras];
 var affirmationButton = document.querySelector('.affirmation');
 var mantraButton = document.querySelector('.mantra');
 var receiveMessageButton = document.querySelector('.receive-message-button');
@@ -46,7 +47,7 @@ var messageInput = document.querySelector('.add-message-input');
 var deletedMessageOutput = document.querySelector('.message-delete');
 
 receiveMessageButton.addEventListener('click', randomize);
-clearMessageButton.addEventListener('click', clearMessage);
+clearMessageButton.addEventListener('click', showDefaultView);
 addMessageButton.addEventListener('click', displayInputForm);
 submitButton.addEventListener('click', submitMessage);
 deleteMessageButton.addEventListener('click', deleteMessage);
@@ -67,37 +68,37 @@ function randomize() {
   var randomMessage = findType(affirmationButton, mantraButton)[randomIndex];
   displayMessage(randomMessage);
 }
-function displayMessage(message) {
+function hideBellShowButtons(){
   bellImage.classList.add('hidden');
-  deletedMessageOutput.classList.add('hidden');
-  addMessageForm.classList.add('hidden');
-  messageOutput.innerText = message;
   clearMessageButton.classList.remove('hidden');
   deleteMessageButton.classList.remove('hidden');
-
 }
-function clearMessage() {
+function showDefaultView() {
   addMessageForm.classList.add('hidden');
   messageOutput.innerText = "";
   clearMessageButton.classList.add('hidden');
   deleteMessageButton.classList.add('hidden');
   bellImage.classList.remove('hidden');
 }
+function displayMessage(message) {
+  deletedMessageOutput.classList.add('hidden');
+  addMessageForm.classList.add('hidden');
+  messageOutput.innerText = message;
+  hideBellShowButtons();
+}
 function deleteMessage() {
   if (confirm('Are you sure you want to delete this message? It will no longer be available.')) {
-    for (var i = 0; i < findType(affirmationButton, mantraButton).length; i++) {
-      if (findType(affirmationButton, mantraButton)[i] === messageOutput.innerText) {
-        var deletedMessage = findType(affirmationButton, mantraButton)[i];
-        findType(affirmationButton, mantraButton).splice(i, 1);
+    for (var i = 0; i < messageTypes.length; i++) {
+      for (var j = 0; j < messageTypes[i].length; j++) {
+        if (messageTypes[i][j] === messageOutput.innerText) {
+          var deletedMessage = messageTypes[i][j];
+          messageTypes[i].splice(j, 1);
+        }
       }
     }
+    showDefaultView();
     deletedMessageOutput.innerText = `"${deletedMessage}" has been deleted!`;
-    addMessageForm.classList.add('hidden');
-    messageOutput.innerText = "";
-    clearMessageButton.classList.add('hidden');
-    deleteMessageButton.classList.add('hidden');
     deletedMessageOutput.classList.remove('hidden');
-    bellImage.classList.remove('hidden');
   }
 }
 function displayInputForm() {
@@ -123,8 +124,7 @@ function submitMessage() {
     }
   }
   findType(addAffirmationButton, addMantraButton).push(messageInput.value);
-  addMessageForm.classList.add('hidden');
   messageOutput.innerText = messageInput.value;
-  clearMessageButton.classList.remove('hidden');
-  deleteMessageButton.classList.remove('hidden');
+  addMessageForm.classList.add('hidden');
+  hideBellShowButtons();
 }
